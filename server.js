@@ -1,18 +1,19 @@
-var Leads = require("./Leads/Leads.js");
 var express = require("express");
-var logger = require("connect-logger");
 var app = express();
-app.use(logger());
 var server = require('http').createServer(app);
 
+var Leads;
 var s = {};
-s.start = serverStart;
-s.bindRoutes = bindRoutes;
 
-module.exports = init;
-function init(config){
+module.exports = function init(config){
+  Leads = config.Leads;
+  Leads.New();
+
+  app.use( require("connect-logger")() );
+  bindRoutes();
+
+  s.start = serverStart;
   s.env = config.env;
-  console.log(s)
   return s
 }
 

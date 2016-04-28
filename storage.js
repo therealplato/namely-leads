@@ -3,7 +3,10 @@ var storage = {};
 module.exports = storage;
 
 storage.New = function(){
-  var s = {data: {}}
+  var s = {
+    data: {},
+    storeID: uuid.v4(),
+  }
   s.Save = saveMemory.bind(s);
   s.List = listMemory.bind(s);
   return s;
@@ -20,8 +23,8 @@ function saveMemory(obj){
 function listMemory(){
   var out = [];
   for(key in this.data){
-    if(!store.hasOwnProperty[key]) continue
-    out.push(store[key])
+    if( !this.data.hasOwnProperty(key) ){ continue }
+    out.push(this.data[key])
   }
   return out
 }

@@ -1,15 +1,24 @@
-module.exports = function Profile(){
-  p = {
-    name: "Jack's Lumber",
-    info: "We sell wood",
-    contact: {
-      name: "Jack",
-      phone: "555-555-5555",
-      email: "jack@jacks.zzz",
-    }
+var storage;
+var p = {};
+module.exports = function (s){
+  storage = s;
+  return p;
+}
+
+p.New = function(){
+  return new Profile();
+}
+
+function Profile(){
+  this.name = "Jack's Lumber",
+  this.info = "We sell wood",
+  this.contact = {
+    name: "Jack",
+    phone: "555-555-5555",
+    email: "jack@jacks.zzz",
   }
   var that=this;
-  p.Save = function(storage){
+  this.Save = function(){
     storage.Save(that);
   }
 }
