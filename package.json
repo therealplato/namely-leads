@@ -1,0 +1,25 @@
+{
+  "name": "namely-leads",
+  "version": "0.1.0",
+  "description": "Companies can list their products and view other companies' products",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "jasmine": "^2.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/therealplato/namely-leads.git"
+  },
+  "author": "therealplato@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/therealplato/namely-leads/issues"
+  },
+  "homepage": "https://github.com/therealplato/namely-leads#readme"
+}
