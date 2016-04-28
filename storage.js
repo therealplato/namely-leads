@@ -2,19 +2,26 @@ var uuid = require('uuid')
 var storage = {};
 module.exports = storage;
 
-memoryAdapter = {};
-storage.Save = function(obj){
+storage.New = function(){
+  var s = {data: {}}
+  s.Save = saveMemory.bind(s);
+  s.List = listMemory.bind(s);
+  return s;
+}
+
+function saveMemory(obj){
   if(obj.id == undefined){
     obj.id = uuid.v4()
   }
-  memoryAdapter[obj.id] = obj;
+  this.data[obj.id] = obj;
+  return obj;
 }
 
-storage.List = function(){
+function listMemory(){
   var out = [];
-  for(key in memoryAdapter){
-    if(!memoryAdapter.hasOwnProperty[key]) continue
-    out.push(memoryAdapter[key])
+  for(key in this.data){
+    if(!store.hasOwnProperty[key]) continue
+    out.push(store[key])
   }
   return out
 }

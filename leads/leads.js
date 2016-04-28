@@ -1,10 +1,15 @@
 var leads = {};
 module.exports = leads;
 
-var storage = require("../storage.js");
+var profileStorage = require("../storage.js").New();
 var Profile = require("./Profile.js");
 
-leads.Profile = function(){
-  return new Profile();
+leads.New = function(){
+  var p = new Profile();
+  p.Save(profileStorage)
+  return p
 }
 
+leads.List = function(){
+  return profileStorage.List()
+}

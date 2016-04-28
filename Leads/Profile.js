@@ -9,7 +9,7 @@ module.exports = function Profile(){
     }
   }
   var that=this;
-  p.Save = function(){
+  p.Save = function(storage){
     storage.Save(that);
   }
 }
