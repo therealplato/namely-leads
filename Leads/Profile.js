@@ -1,3 +1,4 @@
+var lip = require('lorem-ipsum').bind(this, { count: 4, units: 'sentences'});
 var storage;
 var p = {};
 module.exports = function (s){
@@ -5,18 +6,22 @@ module.exports = function (s){
   return p;
 }
 
-p.New = function(){
-  return new Profile();
-}
-
-function Profile(){
-  this.name = "Jack's Lumber",
-  this.info = "We sell wood",
-  this.contact = {
+p.New = function(cfg){
+  cfg = cfg || {};
+  cfg.name = cfg.name || "Default Company";
+  cfg.info = cfg.info || lip();
+  cfg.contact = cfg.contact || {
     name: "Jack",
     phone: "555-555-5555",
     email: "jack@jacks.zzz",
-  }
+  };
+  return new Profile(cfg);
+}
+
+function Profile(cfg){
+  this.name = cfg.name;
+  this.info = cfg.info;
+  this.contact = cfg.contact;
   var that=this;
   this.Save = function(){
     storage.Save(that);
