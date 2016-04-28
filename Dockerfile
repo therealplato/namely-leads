@@ -7,6 +7,5 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-#EXPOSE 8765
 RUN mkdir -p /go/src/github.com/therealplato/namely-leads
 WORKDIR /go/src/github.com/therealplato/namely-leads
