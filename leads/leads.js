@@ -8,8 +8,9 @@ module.exports = function(storage){
   return leads;
 };
 
-leads.New = function(){
-  var p = Profile.New();
+leads.New = function(cfg){
+  cfg = cfg || {};
+  var p = Profile.New(cfg);
   p.Save()
   return p
 }

@@ -1,7 +1,7 @@
 var store = require('./storage.js').New();
 var Leads = require('./Leads/Leads.js')(store);
-Leads.New();
-Leads.New();
+Leads.New({name: "doggies", opted: true});
+Leads.New({opted: false});
 console.log(Leads.List());
 
 var serverConfig = {
