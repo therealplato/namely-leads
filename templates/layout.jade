@@ -10,7 +10,7 @@ html(lang='en')
     script(src='/bower/angular-material/angular-material.min.js')
     script(src='/leadsApp.js')
     style.
-      body { max-width: 800px;}
+      #container { max-width: 800px; margin: 0 auto;}
       textarea { width: 100%; height: 5em;}
       #allprofiles md-list-item-text { padding: 5px; width:100%; margin-bottom: 5px;}
       .promoted { background-color: rgba(0,200,50,0.3)}
@@ -52,4 +52,5 @@ html(lang='en')
           )
             img(ng-src="images/cat.jpeg", class="md-avatar")
 
-    block content
+    #container
+      block content
