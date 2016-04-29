@@ -1,5 +1,9 @@
 var store = require('./storage.js').New();
 var Leads = require('./Leads/Leads.js')(store);
+Leads.New();
+Leads.New();
+console.log(Leads.List());
+
 var serverConfig = {
   Leads: Leads,
   env: {

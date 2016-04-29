@@ -1,0 +1,7 @@
+extends layout
+block append content
+  div#oneprofile(ng-controller="oneProfileController")
+    meta(data-profileid=locals.id)
+    md-list(
+      ng-include="'/partials/profile'"
+    )

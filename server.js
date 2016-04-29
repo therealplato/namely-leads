@@ -9,8 +9,6 @@ var s = {};
 var testLead;
 module.exports = function init(config){
   Leads = config.Leads;
-  testLead = Leads.New();
-  console.log(testLead);
 
   app.use( require("connect-logger")() );
   app.use(express.static('web/'));
@@ -27,7 +25,9 @@ function bindRoutes(){
   var routes = require('./routes/index.js')(Leads);
   app.get('/', routes.getRoot);
   app.get('/leads', routes.getLeads);
+  app.get('/profile/:id', routes.getProfile);
   app.use('/api', routes.apiApp);
+  app.use('/partials', routes.partialsApp);
 }
 
 function serverStart(){
