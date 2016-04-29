@@ -1,5 +1,16 @@
-html
+html(lang='en')
   head
     title #{locals.title || "Namely Leads"}
-  body
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/bower/angular_material/angular-material.min.css')
+    script(src='/bower/angular/angular.min.js')
+    script(src='/bower/angular-animate/angular-animate.min.js')
+    script(src='/bower/angular-aria/angular-aria.min.js')
+    script(src='/bower/angular-messages/angular-messages.min.js')
+    script(src='/bower/angular-material/angular-material.min.js')
+    script(src='/leadsApp.js')
+
+  body(ng-app='LeadsApp', ng-cloak='')
     block content
+    footer
+      p(ng-repeat="foo in [1,2,3]") hello
