@@ -5,6 +5,7 @@ Leads.New({
   name: "Haggar Pants",
   info: "Do your employees lack pants? We can help!",
   opted: true,
+  promoted: true,
   owner: "Barnaby Jones"
 });
 Leads.New({

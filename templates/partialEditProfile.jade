@@ -1,4 +1,5 @@
 md-list
+  md-divider
   md-list-item
     md-switch(ng-model="state.editing", class="md-secondary")
     p(ng-if="state.editing") <strong>Editing</strong> My Company Profile
@@ -7,19 +8,26 @@ md-list
   md-divider
   md-subheader Company Name
   md-list-item(ng-if="state.editing")
-    input(ng-model="profile.name")
+    h4
+      input(ng-model="profile.name")
   md-list-item(ng-if="!state.editing")
       h4 {{profile.name}}
 
   md-subheader Company Description
-  md-list-item(ng-if="state.editing")
+  md-list-item(ng-if="state.editing", layout="row")
     textarea(ng-model="profile.info")
   md-list-item(ng-if="!state.editing")
       p  {{profile.info}}
 
+  md-subheader(ng-if="state.editing") Promote Profile
+  md-list-item(ng-if="state.editing")
+    md-checkbox(ng-model="profile.promoted", class="md-secondary")
+    p(ng-if="!profile.promoted") Would you like to bump your company to the top of the list? Reasonable fees apply.
+    p(ng-if="profile.promoted") Good choice.
+
   md-subheader(ng-if="state.editing") Share Company Profile?
   md-list-item(ng-if="state.editing")
-    md-switch(ng-model="profile.opted", class="md-secondary")
+    md-checkbox(ng-model="profile.opted", class="md-secondary")
     p(ng-if="profile.opted") Company profile is advertised
     p(ng-if="!profile.opted") Company profile is unlisted
 

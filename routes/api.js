@@ -29,10 +29,17 @@ module.exports = function(Leads){
 
   apiApp.get('/profiles', function(req, res){
     var profiles = Leads.List();
-    profiles = _.filter(profiles, function(p){
+    listed = _.filter(profiles, function(p){
       return p.opted
     })
-    res.status(200).json(profiles);
+    promoted = _.filter(listed, function(p){
+      return p.promoted
+    })
+    unpromoted = _.reject(profiles, function(p){
+      return p.promoted
+    })
+    ordered = promoted.concat(unpromoted)
+    res.status(200).json(ordered);
   })
 
   apiApp.get('/optin/:id', function(req, res){

@@ -26,7 +26,7 @@ function getRoot(req, res){
 
 function getLogin(req, res){
   req.session.user = req.params.id;
-  res.redirect('/');
+  res.redirect('/profiles');
 }
 
 function getLogout(req, res){

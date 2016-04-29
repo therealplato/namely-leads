@@ -9,22 +9,31 @@ html(lang='en')
     script(src='/bower/angular-messages/angular-messages.min.js')
     script(src='/bower/angular-material/angular-material.min.js')
     script(src='/leadsApp.js')
+    style.
+      body { max-width: 800px;}
+      textarea { width: 100%; height: 5em;}
+      #allprofiles md-list-item-text { padding: 5px; width:100%; margin-bottom: 5px;}
+      .promoted { background-color: rgba(0,200,50,0.3)}
 
   body(ng-app='LeadsApp', ng-cloak='', layout="column", layout-padding)
     md-toolbar(
       class="md-tall",
       layout="column",
     )
-      div(flex="20")
       h2(flex="40", class="md-toolbar-tools", layout="row")
-        md-button(class="md-noink md-secondary", ng-href="/") Namely Leads
+        md-button(class="md-primary", ng-href="/") Namely Leads
         div(flex)
-        if locals.user
-          span Welcome, #{locals.user}
+      div(flex="20")
       div(flex="40", layout="row", layout-align="center start")
         span(flex)
         if locals.user
+          md-button(ng-href="/myprofile", md-secondary) My Profile
+          md-button(ng-href="/profiles", md-secondary) All Profiles
           md-button(ng-href="/logout", md-secondary) Logout
+          md-button(
+            class="md-fab md-mini",
+          )
+            img(ng-src="images/#{locals.user}.jpeg", class="md-avatar")
         else
           p Login as...
           md-button(
