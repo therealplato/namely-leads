@@ -4,6 +4,7 @@
   "description": "Companies can list their products and view other companies' products",
   "main": "index.js",
   "dependencies": {
+    "cookie-session": "^2.0.0-alpha.1",
     "express": "^4.13.4",
     "jade": "^1.11.0",
     "lorem-ipsum": "^1.0.3",

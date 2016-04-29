@@ -11,6 +11,7 @@ p.New = function(cfg){
   cfg.name = cfg.name || "Default Company";
   cfg.info = cfg.info || lip();
   cfg.opted = cfg.opted || false;
+  cfg.owner = cfg.owner || null;
   cfg.contact = cfg.contact || {
     name: "Jack",
     phone: "555-555-5555",
@@ -24,6 +25,7 @@ function Profile(cfg){
   this.info = cfg.info;
   this.contact = cfg.contact;
   this.opted = cfg.opted;
+  this.owner = cfg.owner;
   var that=this;
   this.Save = function(){
     storage.Save(that);
