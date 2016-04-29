@@ -9,6 +9,7 @@ storage.New = function(){
   }
   s.Save = saveMemory.bind(s);
   s.List = listMemory.bind(s);
+  s.Get  = getMemory.bind(s);
   return s;
 }
 
@@ -27,4 +28,13 @@ function listMemory(){
     out.push(this.data[key])
   }
   return out
+}
+
+function getMemory(id){
+  data = this.data[id];
+  if(data == undefined) {
+    return new Error(id+" not found in store")
+  } else {
+    return data
+  }
 }

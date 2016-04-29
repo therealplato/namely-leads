@@ -17,3 +17,7 @@ leads.New = function(){
 leads.List = function(){
   return profileStorage.List()
 }
+
+leads.Get = function(id){
+  return profileStorage.Get(id)
+}

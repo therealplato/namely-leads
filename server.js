@@ -5,9 +5,11 @@ var server = require('http').createServer(app);
 var Leads;
 var s = {};
 
+var testLead;
 module.exports = function init(config){
   Leads = config.Leads;
-  Leads.New();
+  testLead = Leads.New();
+  console.log(testLead);
 
   app.use( require("connect-logger")() );
   bindRoutes();
