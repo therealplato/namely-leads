@@ -1,0 +1,9 @@
+extends layout
+block append content
+  h2 All Leads
+  div#allprofiles(ng-controller="allProfilesController")
+    md-list
+      md-list-item(
+        ng-repeat="profile in profiles"
+        ng-include="'/partials/profile'"
+      )

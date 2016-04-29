@@ -10,8 +10,20 @@ angular.module('LeadsApp', ['ngMaterial'])
 			method: 'GET',
 			url: '/api/profile/'+id,
 		}).then(function successCallback(response) {
-			console.log(response)
 			$scope.profile = response.data;
+		}, function errorCallback(response) {
+		});
+  }]
+)
+.controller('allProfilesController', [
+  '$http',
+  '$scope',
+  function($http, $scope){
+		$http({
+			method: 'GET',
+			url: '/api/profiles',
+		}).then(function successCallback(response) {
+			$scope.profiles = response.data;
 		}, function errorCallback(response) {
 		});
   }]

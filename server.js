@@ -24,7 +24,7 @@ module.exports = function init(config){
 function bindRoutes(){
   var routes = require('./routes/index.js')(Leads);
   app.get('/', routes.getRoot);
-  app.get('/leads', routes.getLeads);
+  app.get('/profiles', routes.getProfiles);
   app.get('/profile/:id', routes.getProfile);
   app.use('/api', routes.apiApp);
   app.use('/partials', routes.partialsApp);

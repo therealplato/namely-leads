@@ -5,5 +5,11 @@ module.exports = function(Leads){
     var profile = Leads.Get(id);
     res.status(200).json(profile);
   })
+
+  apiApp.get('/profiles', function(req, res){
+    var profiles = Leads.List();
+    res.status(200).json(profiles);
+  })
+
   return apiApp
 }

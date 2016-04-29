@@ -3,7 +3,7 @@ module.exports = function(L){
   Leads = L;
   var routes = {};
   routes.getRoot = getRoot;
-  routes.getLeads = getLeads;
+  routes.getProfiles = getProfiles;
   routes.getProfile = getProfile;
   routes.apiApp = require('./api.js')(L);
   routes.partialsApp = require('./partials.js');
@@ -17,8 +17,8 @@ function getRoot(req, res){
   })
 }
 
-function getLeads(req, res){
-  res.status(200).json(Leads.List())
+function getProfiles(req, res){
+  res.render('allProfiles')
 }
 
 function getProfile(req, res){
