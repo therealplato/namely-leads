@@ -1,8 +1,8 @@
 md-list
   md-list-item
     md-switch(ng-model="state.editing", class="md-secondary")
-    p(ng-if="state.editing") Editing My Company Profile
-    p(ng-if="!state.editing") Viewing My Company Profile
+    p(ng-if="state.editing") <strong>Editing</strong> My Company Profile
+    p(ng-if="!state.editing") <strong>Viewing</strong> My Company Profile
 
   md-divider
   md-subheader Company Name
@@ -21,10 +21,19 @@ md-list
   md-list-item(ng-if="state.editing")
     md-switch(ng-model="profile.opted", class="md-secondary")
     p(ng-if="profile.opted") Company profile is advertised
-    p(ng-if="!profile.opted") Company profile is private
+    p(ng-if="!profile.opted") Company profile is unlisted
 
+ 
   md-list-item(ng-if="!state.editing")
-      a(href="/reachout/{{profile.id}}") Contact
+    a(
+      href="/reachout/{{profile.id}}",
+      ng-if="profile.opted"
+    ) Contact {{profile.owner}}
+    a(
+      href="/reachout/{{profile.id}}",
+      ng-if="!profile.opted"
+    ) <strike>Contact {{profile.owner}}</strike>
+    em(ng-if="!profile.opted") &nbsp;&nbsp;Profile is unlisted
 
   md-divider(ng-if="state.editing")
   md-list-item(layout="row", ng-if="state.editing")

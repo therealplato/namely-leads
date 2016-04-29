@@ -1,0 +1,5 @@
+extends layout
+block append content
+  div#editProfile(ng-controller="editProfileController")
+    meta#userid(data-userid=locals.user)
+    div(ng-include="'partials/editProfile'")

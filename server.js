@@ -35,6 +35,7 @@ function bindRoutes(){
   app.get('/logout', routes.getLogout);
   app.get('/profiles', routes.getProfiles);
   app.get('/profile/:id', routes.getProfile);
+  app.get('/myprofile', routes.getMyProfile);
 }
 
 function serverStart(){

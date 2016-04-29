@@ -17,7 +17,7 @@ html(lang='en')
     )
       div(flex="20")
       h2(flex="40", class="md-toolbar-tools", layout="row")
-        span #{locals.title || "Namely Leads"}
+        md-button(class="md-noink md-secondary", ng-href="/") Namely Leads
         div(flex)
         if locals.user
           span Welcome, #{locals.user}

@@ -1,4 +1,4 @@
-var lip = require('lorem-ipsum').bind(this, { count: 4, units: 'sentences'});
+var lip = require('lorem-ipsum').bind(this, { count: 3, units: 'sentences'});
 var storage;
 var p = {};
 module.exports = function (s){
@@ -7,9 +7,11 @@ module.exports = function (s){
 }
 
 p.New = function(cfg){
+  placeholder = lip();
+  placeholderName = placeholder.split(' ').slice(0,2).join(' ');
   cfg = cfg || {};
-  cfg.name = cfg.name || "Default Company";
-  cfg.info = cfg.info || lip();
+  cfg.name = cfg.name || placeholderName;
+  cfg.info = cfg.info || placeholder;
   cfg.opted = cfg.opted || false;
   cfg.owner = cfg.owner || null;
   cfg.contact = cfg.contact || {

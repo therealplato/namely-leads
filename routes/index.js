@@ -6,6 +6,7 @@ module.exports = function(L){
   routes.getLogin = getLogin;
   routes.getLogout = getLogout;
   routes.getProfiles = getProfiles;
+  routes.getMyProfile = getMyProfile;
   routes.getProfile = getProfile;
   routes.apiApp = require('./api.js')(L);
   routes.partialsApp = require('./partials.js');
@@ -14,7 +15,7 @@ module.exports = function(L){
 
 function getRoot(req, res){
   var user;
-  if(req.session.isPopulated){
+  if(req.session.user){
     user = req.session.user;
   }
   res.render('index', {
@@ -34,7 +35,27 @@ function getLogout(req, res){
 }
 
 function getProfiles(req, res){
-  res.render('allProfiles')
+  if(!req.session.user){
+    return res.render('unauthorized')
+  } else {
+    var user = req.session.user;
+  }
+  res.render('allProfiles', {
+    title: 'All Profiles',
+    user: user,
+  })
+}
+
+function getMyProfile(req, res){
+  if(!req.session.user){
+    return res.render('unauthorized')
+  } else {
+    var user = req.session.user;
+  }
+  res.render('myProfile', {
+    title: 'My Company Profile',
+    user: user,
+  })
 }
 
 function getProfile(req, res){

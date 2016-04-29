@@ -2,11 +2,17 @@ var store = require('./storage.js').New();
 var Leads = require('./Leads/Leads.js')(store);
 
 Leads.New({
-  name: "doggies",
+  name: "Haggar Pants",
+  info: "Do your employees lack pants? We can help!",
   opted: true,
-  owner: "defaultUserId",
+  owner: "Barnaby Jones"
 });
-Leads.New({opted: false});
+Leads.New({
+  name: "Horse Island",
+  info: "It is the dream of every horse to retire on a four thousand acre tropical island with abundant coconuts, date palms, freshwater streams and unlimited grazing rights. Call today!",
+  opted: true, 
+  owner: "Randy Randalman"
+});
 console.log(Leads.List());
 
 var serverConfig = {
