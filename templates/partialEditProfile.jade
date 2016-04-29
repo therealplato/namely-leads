@@ -1,10 +1,22 @@
-md-label Edit
-  md-switch(ng-model="editing")
-md-list-item
-  div(ng-if="editing")
+md-list
+  md-subheader Your Profile
+  md-list-item(ng-click="editing = !editing")
+    p(ng-if="editing" flex) Editing
+    p(ng-if="!editing" flex) Viewing
+    md-switch(ng-model="editing")
+
+  md-list-item(ng-if="editing")
     input(ng-model="profile.name", placeholder="Company Name")
+  md-list-item(ng-if="!editing")
+      h3 {{profile.name}}
+
+  md-list-item(ng-if="editing")
     textarea(ng-model="profile.info", placeholder="Company Description")
-  div(ng-if="!editing")
-    h3 {{profile.name}}
-    p  {{profile.info}}
-    a(href="/reachout/{{profile.id}}") Contact
+  md-list-item(ng-if="!editing")
+      p  {{profile.info}}
+
+  md-list-item(ng-if="!editing")
+      a(href="/reachout/{{profile.id}}") Contact
+
+  md-list-item
+    md-button(ng-if="editing" ng-click="saveProfile()") Save

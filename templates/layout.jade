@@ -10,17 +10,36 @@ html(lang='en')
     script(src='/bower/angular-material/angular-material.min.js')
     script(src='/leadsApp.js')
 
-  body(ng-app='LeadsApp', ng-cloak='')
+  body(ng-app='LeadsApp', ng-cloak='', layout="column", layout-padding)
     md-toolbar(
       class="md-tall",
-      layout="row",
-      layout-padding,
-      layout-align="start center"
+      layout="column",
     )
-      h2( class="md-toolbar-tools")
+      div(flex="20")
+      h2(flex="40", class="md-toolbar-tools", layout="row")
         span #{locals.title || "Namely Leads"}
         div(flex)
         if locals.user
           span Welcome, #{locals.user}
+      div(flex="40", layout="row")
+        span(flex)
+        if locals.user
+          md-button(ng-href="/logout", md-secondary) Logout
+        else
+          md-button(
+            ng-href="/login/alice",
+            class="md-fab md-mini",
+          )
+            img(ng-src="images/alice.jpeg", class="md-avatar")
+          md-button(
+            ng-href="/login/birya",
+            class="md-fab md-mini",
+          )
+            img(ng-src="images/birya.jpeg", class="md-avatar")
+          md-button(
+            ng-href="/login/cat",
+            class="md-fab md-mini",
+          )
+            img(ng-src="images/cat.jpeg", class="md-avatar")
 
     block content
