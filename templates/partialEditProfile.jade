@@ -32,7 +32,10 @@ md-list
   md-subheader(ng-if="!state.editing") Promote Profile
   md-list-item.promoted(
     ng-if="!state.editing && profile.promoted"
-  ) ✓ Your company's listing is promoted
+  ) ✓ Your company's listing is promoted.
+  md-list-item(
+    ng-if="!state.editing && !profile.promoted"
+  ) Your company's listing is not promoted.
 
   md-subheader(ng-if="state.editing") Promote Profile?
   md-list-item(ng-if="state.editing")
@@ -41,11 +44,11 @@ md-list
       | of the list?<br> Reasonable fees apply.
     p(ng-if="profile.promoted") Good choice!
 
-  md-subheader Profile Visibility
+  md-subheader Listing Visibility
   md-list-item
     md-checkbox(ng-if="state.editing", ng-model="profile.opted", class="md-secondary")
-    p(ng-if="profile.opted") Company profile is advertised.
-    p(ng-if="!profile.opted") Company profile is unlisted.
+    p(ng-if="profile.opted") Company profile is visible to all logged-in users.
+    p(ng-if="!profile.opted") Company profile is hidden.
 
   md-divider(ng-if="state.editing")
   md-list-item(layout="row", ng-if="state.editing")
