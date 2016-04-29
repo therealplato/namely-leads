@@ -9,7 +9,10 @@ module.exports = function(L){
 }
 
 function getRoot(req, res){
-  res.status(200).send("foobar")
+  res.render('index', {
+    title: 'Namely Leads Index',
+    foo: 'FooBar'
+  })
 }
 
 function getLeads(req, res){

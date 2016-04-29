@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.13.4",
-    "jasmine": "^2.4.1",
+    "jade": "^1.11.0",
     "lorem-ipsum": "^1.0.3",
     "uuid": "^2.0.2"
   },

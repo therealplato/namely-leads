@@ -1,3 +1,4 @@
+var path = require("path");
 var express = require("express");
 var app = express();
 var server = require('http').createServer(app);
@@ -12,6 +13,9 @@ module.exports = function init(config){
   console.log(testLead);
 
   app.use( require("connect-logger")() );
+  app.use(express.static('web/'));
+  app.set('view engine', 'jade');
+  app.set('views', path.join(process.cwd(), 'templates'));
   bindRoutes();
 
   s.start = serverStart;
