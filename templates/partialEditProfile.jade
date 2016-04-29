@@ -1,22 +1,36 @@
 md-list
-  md-subheader Your Profile
-  md-list-item(ng-click="editing = !editing")
-    p(ng-if="editing" flex) Editing
-    p(ng-if="!editing" flex) Viewing
-    md-switch(ng-model="editing")
+  md-list-item
+    md-switch(ng-model="state.editing", class="md-secondary")
+    p(ng-if="state.editing") Editing My Company Profile
+    p(ng-if="!state.editing") Viewing My Company Profile
 
-  md-list-item(ng-if="editing")
-    input(ng-model="profile.name", placeholder="Company Name")
-  md-list-item(ng-if="!editing")
-      h3 {{profile.name}}
+  md-divider
+  md-subheader Company Name
+  md-list-item(ng-if="state.editing")
+    input(ng-model="profile.name")
+  md-list-item(ng-if="!state.editing")
+      h4 {{profile.name}}
 
-  md-list-item(ng-if="editing")
-    textarea(ng-model="profile.info", placeholder="Company Description")
-  md-list-item(ng-if="!editing")
+  md-subheader Company Description
+  md-list-item(ng-if="state.editing")
+    textarea(ng-model="profile.info")
+  md-list-item(ng-if="!state.editing")
       p  {{profile.info}}
 
-  md-list-item(ng-if="!editing")
+  md-subheader(ng-if="state.editing") Share Company Profile?
+  md-list-item(ng-if="state.editing")
+    md-switch(ng-model="profile.opted", class="md-secondary")
+    p(ng-if="profile.opted") Company profile is advertised
+    p(ng-if="!profile.opted") Company profile is private
+
+  md-list-item(ng-if="!state.editing")
       a(href="/reachout/{{profile.id}}") Contact
 
-  md-list-item
-    md-button(ng-if="editing" ng-click="saveProfile()") Save
+  md-divider(ng-if="state.editing")
+  md-list-item(layout="row", ng-if="state.editing")
+    span(flex)
+    md-button(
+      ng-if="state.editing",
+      ng-click="saveProfile()",
+      class="md-primary md-raised"
+    ) Save

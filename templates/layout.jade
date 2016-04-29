@@ -21,11 +21,12 @@ html(lang='en')
         div(flex)
         if locals.user
           span Welcome, #{locals.user}
-      div(flex="40", layout="row")
+      div(flex="40", layout="row", layout-align="center start")
         span(flex)
         if locals.user
           md-button(ng-href="/logout", md-secondary) Logout
         else
+          p Login as...
           md-button(
             ng-href="/login/alice",
             class="md-fab md-mini",

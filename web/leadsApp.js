@@ -21,7 +21,10 @@ angular.module('LeadsApp', ['ngMaterial'])
   '$scope',
   function($element, $http, $scope){
     $scope.profile = {};
-    $scope.editing = false;
+    $scope.state = {
+      editing: false,
+    };
+
     var els = $element.find("meta");
 		var id = els[0].dataset['userid'];
 		$http({
@@ -35,7 +38,7 @@ angular.module('LeadsApp', ['ngMaterial'])
     $scope.saveProfile = function(){
       $http.post('/api/profile', $scope.profile)
       .then(function successCallback(response) {
-        // $scope.profileSaved = true;
+        $scope.state.editing = false;
       }, function errorCallback(response) {
       });
     }

@@ -1,8 +1,9 @@
 extends layout
 block append content
-  p Welcome to Namely Leads!
-  p Advertise your company's services and connect with other companies.
+  p Welcome to Namely Leads! Advertise your company's services and connect with other companies.
   if(locals.user)
     div#editProfile(ng-controller="editProfileController")
       meta#userid(data-userid=locals.user)
       div(ng-include="'partials/editProfile'")
+  else
+    p Login to list and view companies.
