@@ -21,6 +21,7 @@ angular.module('LeadsApp', ['ngMaterial'])
   '$scope',
   function($element, $http, $scope){
     $scope.profile = {};
+    $scope.profile.contact = {};
     $scope.state = {
       editing: false,
     };

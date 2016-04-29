@@ -35,7 +35,7 @@ module.exports = function(Leads){
     promoted = _.filter(listed, function(p){
       return p.promoted
     })
-    unpromoted = _.reject(profiles, function(p){
+    unpromoted = _.reject(listed, function(p){
       return p.promoted
     })
     ordered = promoted.concat(unpromoted)

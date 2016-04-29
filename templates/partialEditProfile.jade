@@ -8,46 +8,55 @@ md-list
   md-divider
   md-subheader Company Name
   md-list-item(ng-if="state.editing")
-    h4
+    md-input-container.md-block
       input(ng-model="profile.name")
   md-list-item(ng-if="!state.editing")
       h4 {{profile.name}}
 
-  md-subheader Company Description
-  md-list-item(ng-if="state.editing", layout="row")
-    textarea(ng-model="profile.info")
+  md-subheader Listing Text
+  md-list-item(ng-if="state.editing", layout="column")
+    textarea.md-block(ng-model="profile.info", rows="5")
   md-list-item(ng-if="!state.editing")
       p  {{profile.info}}
 
-  md-subheader(ng-if="state.editing") Promote Profile
-  md-list-item(ng-if="state.editing")
-    md-checkbox(ng-model="profile.promoted", class="md-secondary")
-    p(ng-if="!profile.promoted") Would you like to bump your company to the top of the list? Reasonable fees apply.
-    p(ng-if="profile.promoted") Good choice.
-
-  md-subheader(ng-if="state.editing") Share Company Profile?
-  md-list-item(ng-if="state.editing")
-    md-checkbox(ng-model="profile.opted", class="md-secondary")
-    p(ng-if="profile.opted") Company profile is advertised
-    p(ng-if="!profile.opted") Company profile is unlisted
-
- 
+  md-subheader Sales Contact
   md-list-item(ng-if="!state.editing")
     a(
-      href="/reachout/{{profile.id}}",
-      ng-if="profile.opted"
-    ) Contact {{profile.owner}}
-    a(
-      href="/reachout/{{profile.id}}",
-      ng-if="!profile.opted"
-    ) <strike>Contact {{profile.owner}}</strike>
-    em(ng-if="!profile.opted") &nbsp;&nbsp;Profile is unlisted
+      href="mailto:{{profile.contact.email}}",
+    ) Email {{profile.owner}}
+  md-list-item(ng-if="state.editing")
+    md-input-container.md-block
+      input(ng-model="profile.contact.email")
+      label Sales Email
+
+  md-subheader(ng-if="!state.editing") Promote Profile
+  md-list-item.promoted(
+    ng-if="!state.editing && profile.promoted"
+  ) ✓ Your company's listing is promoted
+
+  md-subheader(ng-if="state.editing") Promote Profile?
+  md-list-item(ng-if="state.editing")
+    md-checkbox(ng-model="profile.promoted", class="md-secondary")
+    p(ng-if="!profile.promoted") Would you like to bump your company to the top
+      | of the list?<br> Reasonable fees apply.
+    p(ng-if="profile.promoted") Good choice!
+
+  md-subheader Profile Visibility
+  md-list-item
+    md-checkbox(ng-if="state.editing", ng-model="profile.opted", class="md-secondary")
+    p(ng-if="profile.opted") Company profile is advertised.
+    p(ng-if="!profile.opted") Company profile is unlisted.
 
   md-divider(ng-if="state.editing")
   md-list-item(layout="row", ng-if="state.editing")
     span(flex)
     md-button(
-      ng-if="state.editing",
       ng-click="saveProfile()",
       class="md-primary md-raised"
     ) Save
+  md-list-item(layout="row", ng-if="!state.editing")
+    span(flex)
+    md-button(
+      ng-click="state.editing=true",
+      class="md-primary md-raised"
+    ) Edit

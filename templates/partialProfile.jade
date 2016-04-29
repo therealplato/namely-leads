@@ -1,4 +1,6 @@
 md-list-item-text(ng-class="{promoted: profile.promoted}")
   h4 {{profile.name}}
   p  {{profile.info}}
-  a(href="/reachout/{{profile.id}}") Contact {{profile.owner}}
+  a(
+    href="mailto:{{profile.contact.email}}",
+  ) Email {{profile.owner}}
