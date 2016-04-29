@@ -11,4 +11,16 @@ html(lang='en')
     script(src='/leadsApp.js')
 
   body(ng-app='LeadsApp', ng-cloak='')
+    md-toolbar(
+      class="md-tall",
+      layout="row",
+      layout-padding,
+      layout-align="start center"
+    )
+      h2( class="md-toolbar-tools")
+        span #{locals.title || "Namely Leads"}
+        div(flex)
+        if locals.user
+          span Welcome, #{locals.user}
+
     block content

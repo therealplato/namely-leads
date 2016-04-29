@@ -11,8 +11,8 @@ var testLead;
 module.exports = function init(config){
   Leads = config.Leads;
 
-  app.use( require("connect-logger")() );
   app.use(express.static('web/'));
+  app.use( require("connect-logger")() );
   app.set('view engine', 'jade');
   app.set('views', path.join(process.cwd(), 'templates'));
   bindRoutes();
@@ -28,14 +28,10 @@ function bindRoutes(){
   app.use('/partials', routes.partialsApp);
 
   app.use(cookieSession({keys:['key1']}))
-  app.use(function(req, res, next){
-    if(req.session.isNew){
-      req.session.user = "defaultUserId";
-    }
-    next()
-  })
+
   app.get('/', routes.getRoot);
   app.get('/login/:id', routes.getLogin);
+  app.get('/logout', routes.getLogout);
   app.get('/profiles', routes.getProfiles);
   app.get('/profile/:id', routes.getProfile);
 }

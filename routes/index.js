@@ -4,6 +4,7 @@ module.exports = function(L){
   var routes = {};
   routes.getRoot = getRoot;
   routes.getLogin = getLogin;
+  routes.getLogout = getLogout;
   routes.getProfiles = getProfiles;
   routes.getProfile = getProfile;
   routes.apiApp = require('./api.js')(L);
@@ -12,14 +13,24 @@ module.exports = function(L){
 }
 
 function getRoot(req, res){
+  var user;
+  if(req.session.isPopulated){
+    user = req.session.user;
+  }
   res.render('index', {
     title: 'Namely Leads Index',
-    foo: 'FooBar'
+    foo: 'FooBar',
+    user: user,
   })
 }
 
 function getLogin(req, res){
-  req.session.user = req.param['id'];
+  req.session.user = req.params.id;
+  res.redirect('/');
+}
+
+function getLogout(req, res){
+  req.session.user = null;
   res.redirect('/');
 }
 
