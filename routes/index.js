@@ -18,8 +18,7 @@ function getRoot(req, res){
     user = req.session.user;
   }
   res.render('index', {
-    title: 'Namely Leads Index',
-    foo: 'FooBar',
+    title: 'Namely Leads Overview',
     user: user,
   })
 }

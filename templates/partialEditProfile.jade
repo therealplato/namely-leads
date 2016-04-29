@@ -1,0 +1,10 @@
+md-label Edit
+  md-switch(ng-model="editing")
+md-list-item
+  div(ng-if="editing")
+    input(ng-model="profile.name", placeholder="Company Name")
+    textarea(ng-model="profile.info", placeholder="Company Description")
+  div(ng-if="!editing")
+    h3 {{profile.name}}
+    p  {{profile.info}}
+    a(href="/reachout/{{profile.id}}") Contact

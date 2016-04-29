@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var leads = {};
 var profileStorage;
 var Profile;
@@ -21,4 +22,15 @@ leads.List = function(){
 
 leads.Get = function(id){
   return profileStorage.Get(id)
+}
+
+leads.GetUserProfile = function(id){
+  var all = profileStorage.List()
+  var matches = _.filter(all, function(x){ return x.owner == id })
+  if(matches.length == 0) {
+    var p = Profile.New({owner: id})
+    p.Save();
+    return p;
+  }
+  return matches[0];
 }

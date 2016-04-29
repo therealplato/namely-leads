@@ -15,6 +15,32 @@ angular.module('LeadsApp', ['ngMaterial'])
 		});
   }]
 )
+.controller('editProfileController', [
+  '$element',
+  '$http',
+  '$scope',
+  function($element, $http, $scope){
+    $scope.profile = {};
+    $scope.editing = false;
+    var els = $element.find("meta");
+		var id = els[0].dataset['userid'];
+		$http({
+			method: 'GET',
+			url: '/api/profileForUser/'+id,
+		}).then(function successCallback(response) {
+			$scope.profile = response.data;
+		}, function errorCallback(response) {
+		});
+
+    $scope.saveProfile = function(){
+      $http.post('/api/profile', $scope.profile)
+      .then(function successCallback(response) {
+        // $scope.profileSaved = true;
+      }, function errorCallback(response) {
+      });
+    }
+  }]
+)
 .controller('allProfilesController', [
   '$http',
   '$scope',

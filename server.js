@@ -24,6 +24,7 @@ module.exports = function init(config){
 
 function bindRoutes(){
   var routes = require('./routes/index.js')(Leads);
+  app.use(require('body-parser').json());
   app.use('/api', routes.apiApp);
   app.use('/partials', routes.partialsApp);
 
