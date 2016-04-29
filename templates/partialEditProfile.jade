@@ -1,9 +1,22 @@
 md-list
   md-divider
-  md-list-item
-    md-switch(ng-model="state.editing", class="md-secondary")
-    p(ng-if="state.editing") <strong>Editing</strong> My Company Profile
-    p(ng-if="!state.editing") <strong>Viewing</strong> My Company Profile
+  md-list-item(layout="row")
+    p
+      span
+        strong(ng-if="state.editing") Editing
+        strong(ng-if="!state.editing") Viewing
+      span &nbsp; {{profile.name}}'s Profile 
+    span(flex)
+    md-button(
+      ng-if="!state.editing",
+      ng-click="state.editing=true",
+      class="md-secondary"
+    ) Edit
+    md-button(
+      ng-if="state.editing",
+      ng-click="state.editing=false",
+      class="md-secondary"
+    ) View
 
   md-divider
   md-subheader Company Name
@@ -41,7 +54,7 @@ md-list
   md-list-item(ng-if="state.editing")
     md-checkbox(ng-model="profile.promoted", class="md-secondary")
     p(ng-if="!profile.promoted") Would you like to bump your company to the top
-      | of the list?<br> Reasonable fees apply.
+      | of the listings?<br> Reasonable fees apply.
     p(ng-if="profile.promoted") Good choice!
 
   md-subheader Listing Visibility
@@ -57,9 +70,3 @@ md-list
       ng-click="saveProfile()",
       class="md-primary md-raised"
     ) Save
-  md-list-item(layout="row", ng-if="!state.editing")
-    span(flex)
-    md-button(
-      ng-click="state.editing=true",
-      class="md-primary md-raised"
-    ) Edit
