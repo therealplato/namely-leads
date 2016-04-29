@@ -33,6 +33,9 @@ function bindRoutes(){
   app.get('/', routes.getRoot);
   app.get('/login/:id', routes.getLogin);
   app.get('/logout', routes.getLogout);
+  app.get('/opt', routes.getOpt);
+  app.get('/optin', routes.getOptIn);
+  app.get('/optout', routes.getOptOut);
   app.get('/profiles', routes.getProfiles);
   app.get('/profile/:id', routes.getProfile);
   app.get('/myprofile', routes.getMyProfile);

@@ -2,12 +2,17 @@ var Leads
 module.exports = function(L){
   Leads = L;
   var routes = {};
+
   routes.getRoot = getRoot;
   routes.getLogin = getLogin;
   routes.getLogout = getLogout;
   routes.getProfiles = getProfiles;
   routes.getMyProfile = getMyProfile;
   routes.getProfile = getProfile;
+  routes.getOpt = getOpt;
+  routes.getOptIn = getOptIn;
+  routes.getOptOut = getOptOut;
+
   routes.apiApp = require('./api.js')(L);
   routes.partialsApp = require('./partials.js');
   return routes;
@@ -26,7 +31,7 @@ function getRoot(req, res){
 
 function getLogin(req, res){
   req.session.user = req.params.id;
-  res.redirect('/profiles');
+  res.redirect('/myprofile');
 }
 
 function getLogout(req, res){
@@ -34,11 +39,32 @@ function getLogout(req, res){
   res.redirect('/');
 }
 
+function getOpt(req, res){
+  var p = Leads.GetUserProfile(req.session.user);
+  res.render('opt', p)
+}
+function getOptIn(req, res){
+  var p = Leads.GetUserProfile(req.session.user);
+  p.opted = true;
+  p.Save();
+  res.redirect('/myprofile')
+}
+function getOptOut(req, res){
+  var p = Leads.GetUserProfile(req.session.user);
+  p.opted = false;
+  p.Save();
+  res.redirect('/')
+}
+
 function getProfiles(req, res){
   if(!req.session.user){
     return res.render('unauthorized')
   } else {
     var user = req.session.user;
+  }
+  var profile = Leads.GetUserProfile(user);
+  if(profile.opted == null){
+    return res.redirect('opt')
   }
   res.render('allProfiles', {
     title: 'All Profiles',
@@ -51,6 +77,11 @@ function getMyProfile(req, res){
     return res.render('unauthorized')
   } else {
     var user = req.session.user;
+  }
+  var profile = Leads.GetUserProfile(user);
+  console.log(profile);
+  if(profile.opted == null){
+    return res.redirect('opt')
   }
   res.render('myProfile', {
     title: 'My Company Profile',

@@ -1,0 +1,6 @@
+extends layout
+block append content
+  p <strong>#{locals.name}</strong> is not participating in Namely Leads. Would you like to join?
+  div(layout="row", layout-align="space around")
+    md-button.md-primary.md-raised(ng-href="/optin") Opt In
+    md-button.md-warn.md-raised(ng-href="/optout") Opt Out
