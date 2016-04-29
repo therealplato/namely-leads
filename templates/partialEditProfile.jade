@@ -1,72 +1,79 @@
-md-list
-  md-divider
+md-list(ng-if="state.editing")
   md-list-item(layout="row")
-    p
-      span
-        strong(ng-if="state.editing") Editing
-        strong(ng-if="!state.editing") Viewing
-      span &nbsp; {{profile.name}}'s Profile 
-    span(flex)
+    p Editing {{profile.name}}
     md-button(
-      ng-if="!state.editing",
-      ng-click="state.editing=true",
-      class="md-secondary"
-    ) Edit
-    md-button(
-      ng-if="state.editing",
       ng-click="state.editing=false",
-      class="md-secondary"
+      class="md-primary"
     ) View
-
   md-divider
-  md-subheader Company Name
-  md-list-item(ng-if="state.editing")
+
+  md-list-item
     md-input-container.md-block
       input(ng-model="profile.name")
-  md-list-item(ng-if="!state.editing")
-      h4 {{profile.name}}
+      label Company Name:
 
-  md-subheader Listing Text
-  md-list-item(ng-if="state.editing", layout="column")
+  md-subheader Listing Text:
+  md-list-item
     textarea.md-block(ng-model="profile.info", rows="5")
-  md-list-item(ng-if="!state.editing")
-      p  {{profile.info}}
 
-  md-subheader Sales Contact
-  md-list-item(ng-if="!state.editing")
-    a(
-      href="mailto:{{profile.contact.email}}",
-    ) Email {{profile.owner}}
-  md-list-item(ng-if="state.editing")
+  md-list-item
     md-input-container.md-block
       input(ng-model="profile.contact.email")
-      label Sales Email
+      label Sales Email:
 
-  md-subheader(ng-if="!state.editing") Promote Profile
-  md-list-item.promoted(
-    ng-if="!state.editing && profile.promoted"
-  ) ✓ Your company's listing is promoted.
-  md-list-item(
-    ng-if="!state.editing && !profile.promoted"
-  ) Your company's listing is not promoted.
-
-  md-subheader(ng-if="state.editing") Promote Profile?
-  md-list-item(ng-if="state.editing")
+  md-subheader Promote Profile:
+  md-list-item
     md-checkbox(ng-model="profile.promoted", class="md-secondary")
     p(ng-if="!profile.promoted") Would you like to bump your company to the top
       | of the listings?<br> Reasonable fees apply.
-    p(ng-if="profile.promoted") Good choice!
+    p(ng-if="profile.promoted") Your listing is promoted. Good choice!
 
-  md-subheader Listing Visibility
+  md-subheader Listing Visibility:
   md-list-item
-    md-checkbox(ng-if="state.editing", ng-model="profile.opted", class="md-secondary")
+    md-checkbox(ng-model="profile.opted", class="md-secondary")
     p(ng-if="profile.opted") Company profile is visible to all logged-in users.
     p(ng-if="!profile.opted") Company profile is hidden.
 
-  md-divider(ng-if="state.editing")
-  md-list-item(layout="row", ng-if="state.editing")
+  md-divider
+  md-list-item(layout="row")
     span(flex)
     md-button(
       ng-click="saveProfile()",
       class="md-primary md-raised"
     ) Save
+
+md-list(ng-if="!state.editing")
+  md-list-item(layout="row")
+    p(flex, layout="row")
+      span(flex) {{profile.name}}
+    md-button(
+      ng-click="state.editing=true",
+      class="md-primary"
+    ) Edit
+
+  md-divider
+  md-list-item
+    h4 {{profile.name}}
+
+  md-subheader Listing Text
+  md-list-item
+    p {{profile.info}}
+
+  md-subheader Sales Contact
+  md-list-item
+    a(
+      href="mailto:{{profile.contact.email}}",
+    ) Email {{profile.owner}}
+
+  md-subheader Promote Profile
+  md-list-item.promoted(
+    ng-if="profile.promoted"
+  ) ✓ Your company's listing is promoted.
+  md-list-item(
+    ng-if="!profile.promoted"
+  ) Your company's listing is not promoted.
+
+  md-subheader Listing Visibility
+  md-list-item
+    p(ng-if="profile.opted") Company profile is visible to all logged-in users.
+    p(ng-if="!profile.opted") Company profile is hidden.
