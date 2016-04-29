@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "connect-logger": "0.0.1",
     "cookie-session": "^2.0.0-alpha.1",
     "express": "^4.13.4",
     "jade": "^1.11.0",
