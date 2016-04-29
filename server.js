@@ -18,16 +18,10 @@ module.exports = function init(config){
 }
 
 function bindRoutes(){
-  app.get('/', getRoot);
-  app.get('/leads', getLeads);
-}
-
-function getRoot(req, res){
-  res.status(200).send("foobar")
-}
-
-function getLeads(req, res){
-  res.status(200).json(Leads.List())
+  var routes = require('./routes/index.js')(Leads);
+  app.get('/', routes.getRoot);
+  app.get('/leads', routes.getLeads);
+  app.use('/api', routes.apiApp);
 }
 
 function serverStart(){
