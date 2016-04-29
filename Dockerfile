@@ -9,3 +9,5 @@ RUN apt-get update && \
 
 RUN mkdir -p /go/src/github.com/therealplato/namely-leads
 WORKDIR /go/src/github.com/therealplato/namely-leads
+
+RUN npm install -g bower

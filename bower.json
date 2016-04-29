@@ -1,0 +1,21 @@
+{
+  "name": "namely-leads",
+  "description": "Companies can list their products and view other companies' products",
+  "main": "index.js",
+  "authors": [
+    "therealplato@gmail.com"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "1.0.8"
+  }
+}
